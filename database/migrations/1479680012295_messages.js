@@ -10,7 +10,7 @@ class MessagesTableSchema extends Schema {
       table.string('title', 40).notNullable()
       table.text('text').notNullable()
       table.text('picture').notNullable()
-      table.integer('status')
+      table.boolean('status').defaultTo(true)
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.timestamps()
     })
