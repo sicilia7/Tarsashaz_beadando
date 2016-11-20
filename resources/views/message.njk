@@ -1,0 +1,40 @@
+{% extends 'master' %}
+
+{% block content %}
+<h2>Cím</h2>
+<!--
+<p>{{ message.user }}</p>
+<pre>{{ message.date }}</pre>
+<p>{{ message.text }}</p> -->
+<div class="datasheet">
+    <div class="well well-lg">
+    <div class="media">
+    <div class="media-right">
+        <a href="#">
+        <img class="media-object" src="..." alt="...">
+        </a>
+    </div>
+    <div class="media-body">
+        <p>Állapot</p>
+        <p>Feltöltő</p>
+        <p>Feltöltés ideje</p>
+    </div>
+    </div>
+</div>
+<p>Lórum ipse és hatlan pamó javarészt szerész, zsengés. Az erbelésnek egyértelműen le kell legetnie, hogy mázamor és gyari (azaz két aplás - festinc) nem paszkál keletet és soha nem is paszkálhat keletet. Nedés nyamos peresti, hogy az akrohor tömösd cseplő a szagumra nézve, valamint hogy az akrohor tömösd ránkója ravas a kvány sztátával. Minden kedő, ságás vánatban ez is egyes lenne. Egy ilyen halás rendkívül fosztó már csak emiatt a vart kölcség miatt is, mely azon a taticsászon parog, hogy a kezés mellés konsághoz való dohongója abszolút fölötte kicsél a kvány azon rekeszetének, hogy hérogja a kelet losszas köszmélyöt. Simfli Annak doldása, hogy homoszexuálisan jeges kálinak montyba vagy lenségbe gengoljanak agásokat ill. szomás kálikat. Az akrohor tömösd morpályos és padt fidésből bozott, tölönteres és lányoros szelős. A nekező kesítők - legyenek azok aplások vagy kíségek - már eleve oltásak arra, hogy a firáddal vagy lenséggel delmező rítéseket borítják.</p>
+</div>
+<form action="/message/{{ message.id }}/comment" method="POST">
+    {{ csrfField }}
+    <div class="form-group">
+    <label for="comment" class="col-sm-2 control-label">Hozzászólás:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="comment" name="comment" rows=4 ></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-success">Hozzászólás küldése</button>
+    </div>
+  </div>   
+</form>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'master' %}
+
+{% block content %}
+
+<p>
+    <h2>Új közlemény feltöltése</h2>
+</p>
+
+{% if old('errors') %}
+<div class="alert alert-danger" role="alert">
+    <ul>
+    {% for error in old('errors') %}
+    <li>{{ error.message }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form class="form-horizontal" action="/statement/create" method="POST">
+
+  <div class="form-group">
+    <label for="inputTitle" class="col-sm-2 control-label">Cím</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="inputTitle" name="title" value="{{ old('title') }}">
+    </div>
+  </div>
+<div class="form-group" > 
+    <label for="picture" class="col-lg-2 control-label" >Fénykép feltöltése:</label>
+    <input type="file" name="picture" id="picture">
+  </div>
+  <div class="form-group">
+    <label for="inputText" class="col-sm-2 control-label">Leírás</label>
+    <div class="col-sm-9">
+      <textarea class="form-control" id="inputText" rows=10 name="text"></textarea>
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="inputDate" class="col-sm-2 control-label">Eddig legyen kiemelt</label>
+    <div class="col-sm-9">
+        <input type="date" class="form-control" name="inputDate">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-success">Beküldés</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'master' %}
+
+{% block content %}
+
+<h2>Profil szerkesztése</h2>
+
+{% if old('errors') %}
+<div class="alert alert-danger" role="alert">
+    <ul>
+    {% for error in old('errors') %}
+    <li>{{ error.message }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form class="form-horizontal" action="/editProfile" method="POST">
+  {{ csrfField }}
+  <p>Adatok:</p>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-2 control-label">E-mail cím</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail" name="email" value="{{ old('email') }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">Név</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" name="name" value="{{ old('name') }}">
+    </div>
+  </div>
+  <div class="form-group">
+      <p>Jelszócsere:</p>
+    <label for="inputPassword" class="col-sm-2 control-label">Új jelszó</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword" name="password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPasswordAgain" class="col-sm-2 control-label">Új jelszó megint</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPasswordAgain" name="password_again">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-success">Mentés</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
