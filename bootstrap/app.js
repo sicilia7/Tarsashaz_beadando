@@ -28,7 +28,8 @@ const providers = [
   'adonis-lucid/providers/LucidProvider',
   'adonis-lucid/providers/FactoryProvider',
   'adonis-middleware/providers/AppMiddlewareProvider',
-  'adonis-auth/providers/AuthManagerProvider'
+  'adonis-auth/providers/AuthManagerProvider',
+   'adonis-validation-provider/providers/ValidatorProvider'
 ]
 
 /*
@@ -42,6 +43,7 @@ const providers = [
 */
 const aceProviders = [
   'adonis-lucid/providers/CommandsProvider',
+  'adonis-lucid/providers/FactoryProvider',
   'adonis-lucid/providers/MigrationsProvider',
   'adonis-lucid/providers/SchemaProvider',
   'adonis-lucid/providers/SeederProvider',
@@ -74,7 +76,8 @@ const aliases = {
   Middleware: 'Adonis/Src/Middleware',
   Route: 'Adonis/Src/Route',
   Schema: 'Adonis/Src/Schema',
-  View: 'Adonis/Src/View'
+  View: 'Adonis/Src/View',
+  Validator: 'Adonis/Addons/Validator'
 }
 
 /*

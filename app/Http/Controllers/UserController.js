@@ -1,7 +1,7 @@
 'use strict'
 
-//const Validator = use('Validator')
-//const User = use('App/Model/User')
+const Validator = use('Validator')
+const User = use('App/Model/User')
 const Hash = use('Hash')
 
 class UserController {
@@ -41,11 +41,15 @@ class UserController {
     }
 
     * edit(req, res){
-        yield res.sendView('profile')
+        const user = User.find(req.currentUser.id)
+
+        yield res.sendView('profile', {
+            user: user.toJSON()
+        })
     }
 
     * doEdit(req, res){
-        
+        //TODO
     }
 
      * doLogin (req, res) {

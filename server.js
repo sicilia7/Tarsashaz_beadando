@@ -11,7 +11,9 @@
 |
 */
 
+
 const http = require('./bootstrap/http')
 http(function () {
-  use('Event').fire('Http.start')
+  const Event = use('Event')
+  Event.fire('Http.start')
 })

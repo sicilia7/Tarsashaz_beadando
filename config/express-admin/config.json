@@ -3,7 +3,7 @@
         "database": "messages.sqlite"
     },
     "server": {
-        "port": 4444
+        "port": 4545
     },
     "app": {
         "layouts": true,
