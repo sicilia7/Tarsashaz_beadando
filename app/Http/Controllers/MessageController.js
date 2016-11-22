@@ -7,7 +7,7 @@ const Validator = use('Validator')
 
 class MessageController {
 
-    * main (req, res) {
+    * main (req, res) { //TODO: szűrés: kell-e külön? Kell-e route? 
         const messages = yield Message.all()
         const statements = yield Statement.all()
 
@@ -77,7 +77,7 @@ class MessageController {
         const rules = {
             'title': 'required',
             'text': 'required',
-            'deadline': 'required'
+            'deadline': 'required'//Timestamp?
         }
 
         const validation = yield Validator.validateAll(statementData, rules)
@@ -102,23 +102,39 @@ class MessageController {
 
         yield statement.save()
 
-        res.redirect('/statement/${statement.id}') //routes még pontatlan, ezt hozzá kell adni
+        res.redirect('/statement/${statement.id}')
 
     } 
 
     * show (req, res) {
-        yield res.sendView('message')
+        const message = yield Message.find(req.param('id'))
+        const comments = yield message.comments()
+
+        yield res.sendView('message', {
+            message: message.toJSON(),
+            comments: comments.toJSON()
+        })
+    }
+
+    * showStatement (req, res) {
+        const statement = yield Statement.find(req.param('id'))
+        const comments = yield statement.comments()
+
+        yield res.sendView('statement', {//TODO: statement view
+            statement: statement.toJSON(),
+            comments: comments.toJSON()
+        })
     }
 
     * doComment (req, res){
-        
+        //TODO
     }
 
     * edit (req, res) {
         const id = req.param('id')
         const message = yield Message.find(id)
         if(req.currentUser.id !== 1){
-            //Nincshozzájoga
+            res.redirect('/message/${message.id}')
         }
 
         yield res.sendView('messageEdit', {
@@ -127,7 +143,7 @@ class MessageController {
     }
 
     * doEdit (req, res) {
-
+        //TODO
     }
 
 }

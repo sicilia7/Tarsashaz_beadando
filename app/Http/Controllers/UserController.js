@@ -7,6 +7,12 @@ const Hash = use('Hash')
 class UserController {
 
     * register (req, res) {
+        const isLoggedIn = yield req.auth.check()
+
+        if(isLoggedIn){
+            res.redirect('/')
+            return
+        }
         yield res.sendView('register')
     }
 
@@ -30,7 +36,7 @@ class UserController {
         }
 
         const user = new User
-        user.username = userData.name
+        user.name = userData.name
         user.email = userData.email
         user.password = yield Hash.make(userData.password)
 
@@ -49,10 +55,43 @@ class UserController {
     }
 
     * doEdit(req, res){
-        //TODO
+        const userData = req.all()
+
+        const rules = {
+            'email': 'required|email',
+            'name': 'required',
+        }
+        const validation = yield Validator.validateAll(userData, rules)
+
+        if (validation.fails()) {
+            yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
+
+            res.redirect('/editProfile')
+            return
+        }
+
+        const user = User.find(req.currentUser.id)
+        user.name = userData.name
+        user.email = userData.email
+        if(userData.password !== ""){
+            rules = {
+                'password': 'required|min:6',
+                'password_again': 'same:password'
+            }
+            validation = Validator.validateAll(userData, rules)
+            if(validation.fails()){
+                yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
+                res.redirect('/editProfile')
+                return
+            }
+            user.password = yield Hash.make(userData.password)
+        }
+        yield user.save()
+        res.redirect('/editProfile') //TODO: sikerüzenet
+
     }
 
-     * doLogin (req, res) {
+     * doLogin (req, res) { //TODO: ha már be vagyok lépve, mit reagál? 
         const email = req.input('email')
         const password = req.input('password')
 
