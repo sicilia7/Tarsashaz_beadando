@@ -11,15 +11,15 @@ Route.post('/statement/create', 'MessageController.doCreateStatement').middlewar
 
 Route.get('/message/:id', 'MessageController.show') //id //auth
 Route.get('/statement/:id', 'MessageController.showStatement')
-Route.get('/message/edit', 'MessageController.edit') //id //auth
+Route.get('/message/:id/edit', 'MessageController.edit') //auth
 Route.post('/message/:id/edit', 'MessageController.doEdit') //auth
 Route.post('/message/:id/comment', 'MessageController.doComment') //auth
-//statement comment?
+
 Route.get('/register', 'UserController.register')
 Route.post('/register', 'UserController.doRegister')
 
-Route.get('/editProfile', 'UserController.edit') //id //auth
-Route.post('/editProfile', 'UserController.doEdit')//id //auth
+Route.get('/editProfile', 'UserController.edit') //auth
+Route.post('/editProfile', 'UserController.doEdit')//auth
 
 Route.post('/login', 'UserController.doLogin')
 Route.get('/logout', 'UserController.doLogout')

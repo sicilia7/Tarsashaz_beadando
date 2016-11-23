@@ -21,7 +21,7 @@ class MessageController {
         const isLoggedIn = yield req.auth.check()
 
         if (!isLoggedIn) {
-            yield res.sendView('welcome')
+            yield res.redirect('/')
             return
         }
 
@@ -64,7 +64,7 @@ class MessageController {
         const isLoggedIn = yield req.auth.check()
 
         if (!isLoggedIn || req.currentUser.id !== 1) {
-            yield res.sendView('welcome')
+            yield res.redirect('/')
             return
         }
 
@@ -118,16 +118,38 @@ class MessageController {
 
     * showStatement (req, res) {
         const statement = yield Statement.find(req.param('id'))
-        const comments = yield statement.comments()
 
-        yield res.sendView('statement', {//TODO: statement view
-            statement: statement.toJSON(),
-            comments: comments.toJSON()
+        yield res.sendView('statement', {//TODO: statement view //TODO: statement comments
+            statement: statement.toJSON()
         })
     }
 
     * doComment (req, res){
-        //TODO
+        const commentData = req.all()
+        const id = req.param('id')
+        const rules = {
+            'title': 'required',
+            'text': 'required'
+        }
+
+        const validation = yield Validator.validateAll(statementData, rules)
+        if(validation.fails()){
+            yield req.withAll().andWith({ errors: validation.messages() }).flash()
+
+            res.redirect('message/${id}')
+            return
+        }
+
+        const comment = new Comment()
+        comment.title = commentData.title
+        comment.text = commentData.text
+        comment.user_id = req.currentUser.id
+        comment.msg_id = id
+
+        yield comment.save()
+
+        res.redirect('/message/${id}')
+
     }
 
     * edit (req, res) {
@@ -143,7 +165,14 @@ class MessageController {
     }
 
     * doEdit (req, res) {
-        //TODO
+        const newData = req.all()
+        const message = yield Message.find(id)
+
+        message.status = newData.status
+        message.text = message.text + "\n\n Frissítés: \n" + newData.text
+        yield message.save()
+
+        res.redirect('/message/${message.id}')
     }
 
 }
