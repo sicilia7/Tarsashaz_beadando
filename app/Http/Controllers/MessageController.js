@@ -119,7 +119,7 @@ class MessageController {
     * showStatement (req, res) {
         const statement = yield Statement.find(req.param('id'))
 
-        yield res.sendView('statement', {//TODO: statement view //TODO: statement comments
+        yield res.sendView('statement', {//TODO: statement comments
             statement: statement.toJSON()
         })
     }
