@@ -1,0 +1,20 @@
+{% extends 'master' %}
+
+{% block content %}
+<h2>{{ statement.title }}</h2>
+<div class="datasheet">
+    <div class="well well-lg">
+    <div class="media">
+    <div class="media-right">
+        <a href="#">
+        <img class="media-object" src="..." alt="...">
+        </a>
+    </div>
+    <div class="media-body">
+        <p>{{ statement.date }}</p>
+    </div>
+    </div>
+</div>
+<p>{{ statement.text }}</p>
+</div>
+{% endblock %}

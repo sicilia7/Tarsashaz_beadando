@@ -62,7 +62,7 @@
 
           <div class="inner cover">
           {% if currentUser %}
-            <h1 class="cover-heading">Üdvözöljük, XY!</h1>
+            <h1 class="cover-heading">Üdvözöljük, {{ currentUser.name }}!</h1>
             <p class="lead">Kérjük, válasszon a hamarosan lefejlesztésre kerülő menüből....</p>
             {% else %}
             <h1 class="cover-heading">Üdvözöljük!</h1>
