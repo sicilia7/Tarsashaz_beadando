@@ -63,7 +63,16 @@
           <div class="inner cover">
           {% if currentUser %}
             <h1 class="cover-heading">Üdvözöljük, {{ currentUser.name }}!</h1>
-            <p class="lead">Kérjük, válasszon a hamarosan lefejlesztésre kerülő menüből....</p>
+            <p class="lead">Kérjük, válasszon a menüből....</p>
+            <nav>
+              <ul class="nav">
+                 <li><a href="/">Nyitólap</a></li>
+                <li><a href="/messages/">Bejegyzések listázása</a></li>
+                <li><a href="/message/create/">Új bejegyzés</a></li>
+                <li><a href="/editProfile/">Profil szerkesztése</a></li>
+                <li><a href="/logout/">Kijelentkezés</a></li>
+              </ul>
+          </nav>
             {% else %}
             <h1 class="cover-heading">Üdvözöljük!</h1>
             <p class="lead">Bejelentkezés után a rendszerben lehetősége lesz új problémákat, kérdéseket felvetni, valamint megtekinteni és megvitatni a közösség által mostanában közzétett bejegyzéseket.</p>

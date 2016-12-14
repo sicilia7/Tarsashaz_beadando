@@ -7,11 +7,15 @@
     <div class="media">
     <div class="media-right">
         <a href="#">
-        <img class="media-object" src="..." alt="...">
+        <img class="media-object" src= {{ message.picture }} alt="...">
         </a>
     </div>
     <div class="media-body">
-        <p>Állapot</p><!-- megjelenítés -->
+        {% if message.status == true %}
+            <p>Aktív</p>
+        {% else %}
+            <p>Megoldott</p>
+        {% endif %}
         <p>{{ message.user }}</p>
         <p>{{ message.date }}</p>
     </div>

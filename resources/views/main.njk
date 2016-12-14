@@ -16,45 +16,51 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Minden bejegyzés</a></li>
-    <li><a href="#">Saját bejegyzések</a></li>
-    <li><a href="#">Kommentált bejegyzések</a></li>
-    <li><a href="#">Közlemények</a></li>
+    <li><a href="../messages/">Minden bejegyzés</a></li>
+    <li><a href="../messages/own">Saját bejegyzések</a></li>
+    <li><a href="../messages/commented">Kommentált bejegyzések</a></li>
+    <li><a href="../messages/statement">Közlemények</a></li>
   </ul>
 </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Bejegyzés</th>
-        <th>Beküldő</th>
-        <th>Állapot</th>
-        <th>Dátum</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Közlemény1</td>
-        <td>képviselő</td>
-        <td>-</td>
-        <td>2016</td>
-      </tr>
-      <tr>
-        <td>Közlemény2</td>
-        <td>képvielő</td>
-        <td>-</td>
-        <td>2016</td>
-      </tr>
-      <tr>
-        <td>Bejegyzés1</td>
-        <td>Dooley</td>
-        <td>Aktív</td>
-        <td>2016</td>
-      </tr>
-    </tbody>
-  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Érvényesség</th>
+      <th>Beküldő</th>
+      <th>Cím</th>
+    </tr>
+  </thead>
+   <tbody>
+    {% for statement in statements %}
+        <tr>
+          <td>{{statement.user}}</td>
+          <td>{{statement.deadline}}</td>
+          <td><a href="../statement/{{ statement.id }}">{{statement.title}}</a></td>
+          </tr>
+  {% endfor %}
+  {% for message in messages %}
+    {% if message.status == true %}
+        <tr>
+          <td>{{message.user}}</td>
+          <td>"Aktív"</td>
+          <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
+          </tr>
+      {% endif %}
+  {% endfor %}
+  {% for message in messages %}
+  {% if message.status == false %}
+        <tr>
+          <td>{{message.user}}</td>
+          <td>"Megoldott"</td>
+          <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
+          </tr>
+      {% endif %}
+  {% endfor %}
+  </tbody>
+</table>
 
-
+<!--
 <nav aria-label="Page navigation">
   <ul class="pagination">
     <li class="page-item">
@@ -76,5 +82,5 @@
     </li>
   </ul>
 </nav>
-
+-->
 {% endblock %}

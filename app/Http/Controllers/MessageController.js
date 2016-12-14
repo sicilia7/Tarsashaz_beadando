@@ -7,7 +7,7 @@ const Validator = use('Validator')
 
 class MessageController {
 
-    * main (req, res) { //TODO: szűrés: kell-e külön? Kell-e route? 
+    * main (req, res) {
         const messages = yield Message.all()
         const statements = yield Statement.all()
 
@@ -15,6 +15,42 @@ class MessageController {
             messages: messages.toJSON(),
             statements: statements.toJSON()
         })
+    }
+
+    * filter (req, res){
+        const filter = yield Message.find(req.param('filter'))
+        const AllMessages = yield Message.all()
+        const AllStatements = yield Statement.all()
+
+        if(filter == "own"){
+            const messages = []
+            allmessages.forEach(function(element) {
+                if(element.user_id == currentUser.id){
+                    messages.push(element)
+                }
+            }, this);
+            yield res.sendView('main', {
+            messages: messages.toJSON()
+            })
+        }else if(filter == "statements"){
+            yield res.sendView('main', {
+            statements: AllStatements.toJSON()
+            })
+        }else if(filter == "commented"){
+            const messages = []
+            allmessages.forEach(function(message) {
+                message.comments.forEach(function(element) {
+                    if(element.user_id == currentUser.id){
+                        messages.push(message)
+                    }
+                }, this);
+            }, this);
+            yield res.sendView('main', {
+            messages: messages.toJSON()
+            })
+        }else{
+            res.redirect('/messages')
+        }
     }
 
     * create (req, res) {
@@ -119,7 +155,7 @@ class MessageController {
     * showStatement (req, res) {
         const statement = yield Statement.find(req.param('id'))
 
-        yield res.sendView('statement', {//TODO: statement comments
+        yield res.sendView('statement', {
             statement: statement.toJSON()
         })
     }

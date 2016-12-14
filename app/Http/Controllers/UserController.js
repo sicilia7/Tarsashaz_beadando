@@ -87,11 +87,11 @@ class UserController {
             user.password = yield Hash.make(userData.password)
         }
         yield user.save()
-        res.redirect('/editProfile') //TODO: sikerüzenet
+        res.redirect('/editProfile')
 
     }
 
-     * doLogin (req, res) { //TODO: ha már be vagyok lépve, mit reagál? 
+     * doLogin (req, res) {
         const email = req.input('email')
         const password = req.input('password')
 

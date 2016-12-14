@@ -3,13 +3,14 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.get('/messages', 'MessageController.main')//szűréshez route?
+Route.get('/messages', 'MessageController.main')
+Route.get('/messages/:filter', 'MessageController.filter')
 Route.get('/message/create', 'MessageController.create') //auth
 Route.post('/message/create', 'MessageController.doCreate').middleware('auth') 
 Route.get('/statement/create', 'MessageController.createStatement') //auth
 Route.post('/statement/create', 'MessageController.doCreateStatement').middleware('auth')
 
-Route.get('/message/:id', 'MessageController.show') //id //auth
+Route.get('/message/:id', 'MessageController.show') //auth
 Route.get('/statement/:id', 'MessageController.showStatement')
 Route.get('/message/:id/edit', 'MessageController.edit') //auth
 Route.post('/message/:id/edit', 'MessageController.doEdit') //auth
