@@ -5,7 +5,7 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 Route.get('/messages', 'MessageController.main')
 Route.get('/messages/:filter', 'MessageController.filter')
-Route.get('/message/create', 'MessageController.create') //auth
+Route.get('/message/create', 'MessageController.create').middleware('auth')
 Route.post('/message/create', 'MessageController.doCreate').middleware('auth') 
 Route.get('/statement/create', 'MessageController.createStatement') //auth
 Route.post('/statement/create', 'MessageController.doCreateStatement').middleware('auth')

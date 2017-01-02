@@ -34,16 +34,16 @@
    <tbody>
     {% for statement in statements %}
         <tr>
-          <td>{{statement.user}}</td>
           <td>{{statement.deadline}}</td>
+          <td>{{statement.user_id}}</td>
           <td><a href="../statement/{{ statement.id }}">{{statement.title}}</a></td>
           </tr>
   {% endfor %}
   {% for message in messages %}
     {% if message.status == true %}
         <tr>
-          <td>{{message.user}}</td>
           <td>"Aktív"</td>
+          <td>{{ message.user_id }}</td>
           <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
           </tr>
       {% endif %}
@@ -51,8 +51,8 @@
   {% for message in messages %}
   {% if message.status == false %}
         <tr>
-          <td>{{message.user}}</td>
           <td>"Megoldott"</td>
+          <td>{{ message.user_id }}</td>
           <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
           </tr>
       {% endif %}

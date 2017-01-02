@@ -7,7 +7,7 @@ class Comment extends Lucid {
         return this.belongsTo('App/Model/Message')
     }
 
-    use(){
+    user(){
         return this.belongsTo('App/Model/User')
     }
 

@@ -104,6 +104,12 @@ body {
   }
 }
 
+.inner-nav{
+  background-color: #347;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 
 /*
  * Cover

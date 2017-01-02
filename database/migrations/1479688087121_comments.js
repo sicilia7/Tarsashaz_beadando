@@ -9,7 +9,7 @@ class CommentsTableSchema extends Schema {
       table.increments()
       table.text('text').notNullable()
       table.integer('user_id').unsigned().references('id').inTable('users')
-      table.integer('msg_id').unsigned().references('idd').inTable('messages')
+      table.integer('msg_id').unsigned().references('id').inTable('messages')
       table.timestamps()
     })
   }

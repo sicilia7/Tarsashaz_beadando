@@ -40,6 +40,9 @@
               <li><a href="/">Nyitólap</a></li>
             <li><a href="/messages/">Bejegyzések listázása</a></li>
             <li><a href="/message/create/">Új bejegyzés</a></li>
+            {% if currentUser.id == 1 %}
+            <li><a href="/statement/create/">Új közlemény</a></li>
+            {% endif %}
             <li><a href="/editProfile/">Profil szerkesztése</a></li>
             <li><a href="/logout/">Kijelentkezés</a></li>
           </ul>

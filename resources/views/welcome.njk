@@ -44,7 +44,9 @@
               <h3 class="masthead-brand">Bejegyzéskezelő</h3>
               <nav>
                 <ul class="nav masthead-nav">
+                  {% if not currentUser %}
                   <li><a href="/register">Regisztráció</a></li>
+                  {% endif %}
                 </ul>
               </nav>
             </div>
@@ -65,10 +67,13 @@
             <h1 class="cover-heading">Üdvözöljük, {{ currentUser.name }}!</h1>
             <p class="lead">Kérjük, válasszon a menüből....</p>
             <nav>
-              <ul class="nav">
+              <ul class="nav inner-nav">
                  <li><a href="/">Nyitólap</a></li>
                 <li><a href="/messages/">Bejegyzések listázása</a></li>
                 <li><a href="/message/create/">Új bejegyzés</a></li>
+                {% if currentUser.id == 1 %}
+                <li><a href="/statement/create/">Új közlemény</a></li>
+                {% endif %}
                 <li><a href="/editProfile/">Profil szerkesztése</a></li>
                 <li><a href="/logout/">Kijelentkezés</a></li>
               </ul>

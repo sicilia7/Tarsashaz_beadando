@@ -1,6 +1,6 @@
 {
     "sqlite": {
-        "database": "messages.sqlite"
+        "database": "database/messages.sqlite"
     },
     "server": {
         "port": 4545

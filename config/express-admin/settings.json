@@ -399,6 +399,122 @@
             "readonly": false
         }
     },
+    "comments": {
+        "slug": "comments",
+        "table": {
+            "name": "comments",
+            "pk": "id",
+            "verbose": "comments"
+        },
+        "columns": [
+            {
+                "name": "id",
+                "verbose": "id",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "text",
+                "verbose": "text",
+                "control": {
+                    "text": true
+                },
+                "type": "text",
+                "allowNull": false,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "user_id",
+                "verbose": "user_id",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "msg_id",
+                "verbose": "msg_id",
+                "control": {
+                    "text": true
+                },
+                "type": "integer",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "created_at",
+                "verbose": "created_at",
+                "control": {
+                    "text": true
+                },
+                "type": "datetime",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            },
+            {
+                "name": "updated_at",
+                "verbose": "updated_at",
+                "control": {
+                    "text": true
+                },
+                "type": "datetime",
+                "allowNull": true,
+                "defaultValue": null,
+                "listview": {
+                    "show": true
+                },
+                "editview": {
+                    "show": true
+                }
+            }
+        ],
+        "mainview": {
+            "show": true
+        },
+        "listview": {
+            "order": {},
+            "page": 25
+        },
+        "editview": {
+            "readonly": false
+        }
+    },
     "messages": {
         "slug": "messages",
         "table": {
@@ -424,7 +540,7 @@
                 }
             },
             {
-                "title": "title",
+                "name": "title",
                 "verbose": "title",
                 "control": {
                     "text": true
@@ -456,12 +572,12 @@
                 }
             },
             {
-                "title": "picture",
+                "name": "picture",
                 "verbose": "picture",
                 "control": {
                     "text": true
                 },
-                "type": "varchar(80)",
+                "type": "text",
                 "allowNull": false,
                 "defaultValue": null,
                 "listview": {
@@ -479,7 +595,7 @@
                 },
                 "type": "boolean",
                 "allowNull": true,
-                "defaultValue": null,
+                "defaultValue": "'1'",
                 "listview": {
                     "show": true
                 },
@@ -572,7 +688,7 @@
                 }
             },
             {
-                "title": "title",
+                "name": "title",
                 "verbose": "title",
                 "control": {
                     "text": true
@@ -604,12 +720,12 @@
                 }
             },
             {
-                "title": "picture",
+                "name": "picture",
                 "verbose": "picture",
                 "control": {
                     "text": true
                 },
-                "type": "varchar(80)",
+                "type": "text",
                 "allowNull": false,
                 "defaultValue": null,
                 "listview": {
@@ -625,123 +741,7 @@
                 "control": {
                     "text": true
                 },
-                "type": "datetime",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "user_id",
-                "verbose": "user_id",
-                "control": {
-                    "text": true
-                },
-                "type": "integer",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "created_at",
-                "verbose": "created_at",
-                "control": {
-                    "text": true
-                },
-                "type": "datetime",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "updated_at",
-                "verbose": "updated_at",
-                "control": {
-                    "text": true
-                },
-                "type": "datetime",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            }
-        ],
-        "mainview": {
-            "show": true
-        },
-        "listview": {
-            "order": {},
-            "page": 25
-        },
-        "editview": {
-            "readonly": false
-        }
-    },
-    "comments": {
-        "slug": "comments",
-        "table": {
-            "name": "comments",
-            "pk": "id",
-            "verbose": "comments"
-        },
-        "columns": [
-            {
-                "name": "id",
-                "verbose": "id",
-                "control": {
-                    "text": true
-                },
-                "type": "integer",
-                "allowNull": false,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "title",
-                "verbose": "title",
-                "control": {
-                    "text": true
-                },
-                "type": "varchar(50)",
-                "allowNull": false,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "text",
-                "verbose": "text",
-                "control": {
-                    "text": true
-                },
-                "type": "text",
+                "type": "date",
                 "allowNull": false,
                 "defaultValue": null,
                 "listview": {
@@ -754,22 +754,6 @@
             {
                 "name": "user_id",
                 "verbose": "user_id",
-                "control": {
-                    "text": true
-                },
-                "type": "integer",
-                "allowNull": true,
-                "defaultValue": null,
-                "listview": {
-                    "show": true
-                },
-                "editview": {
-                    "show": true
-                }
-            },
-            {
-                "name": "msg_id",
-                "verbose": "msg_id",
                 "control": {
                     "text": true
                 },

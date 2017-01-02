@@ -93,18 +93,18 @@ class MessageController {
 
         yield message.save()
 
-        res.redirect('/message/${message.id}')
+        res.redirect(`/message/${message.id}`)
     } 
 
     * createStatement (req, res) {
         const isLoggedIn = yield req.auth.check()
 
         if (!isLoggedIn || req.currentUser.id !== 1) {
-            yield res.redirect('/')
+            yield res.redirect('./')
             return
         }
 
-        yield res.sendView('statementCreate')
+        yield res.sendView('/statementCreate')
     }
 
     * doCreateStatement (req, res) {
@@ -113,21 +113,21 @@ class MessageController {
         const rules = {
             'title': 'required',
             'text': 'required',
-            'deadline': 'required'//Timestamp?
+            'inputDate': 'required'//Timestamp?
         }
 
         const validation = yield Validator.validateAll(statementData, rules)
         if(validation.fails()){
             yield req.withAll().andWith({ errors: validation.messages() }).flash()
 
-            res.redirect('statement/create')
+            res.redirect('../statement/create')
             return
         }
 
         const statement = new Statement()
         statement.title = statementData.title
         statement.text = statementData.text
-        statement.deadline = statementData.deadline
+        statement.deadline = statementData.inputDate
         statement.user_id = 1 
         if( statementData.picture == "" ) 
         {
@@ -138,17 +138,20 @@ class MessageController {
 
         yield statement.save()
 
-        res.redirect('/statement/${statement.id}')
+        res.redirect(`/statement/${statement.id}`)
 
     } 
 
     * show (req, res) {
         const message = yield Message.find(req.param('id'))
-        const comments = yield message.comments()
+        var comments = yield message.comments()
+        yield message.related('user').load()
+
+        console.log(Object.prototype.toString.call( comments ))
 
         yield res.sendView('message', {
             message: message.toJSON(),
-            comments: comments.toJSON()
+            comments: comments
         })
     }
 
@@ -164,27 +167,25 @@ class MessageController {
         const commentData = req.all()
         const id = req.param('id')
         const rules = {
-            'title': 'required',
             'text': 'required'
         }
 
-        const validation = yield Validator.validateAll(statementData, rules)
+        const validation = yield Validator.validateAll(commentData, rules)
         if(validation.fails()){
             yield req.withAll().andWith({ errors: validation.messages() }).flash()
 
-            res.redirect('message/${id}')
+            res.redirect('./')
             return
         }
 
         const comment = new Comment()
-        comment.title = commentData.title
         comment.text = commentData.text
         comment.user_id = req.currentUser.id
         comment.msg_id = id
 
         yield comment.save()
 
-        res.redirect('/message/${id}')
+        res.redirect('./')
 
     }
 
@@ -192,7 +193,7 @@ class MessageController {
         const id = req.param('id')
         const message = yield Message.find(id)
         if(req.currentUser.id !== 1){
-            res.redirect('/message/${message.id}')
+            res.redirect(`/message/${message.id}`)
         }
 
         yield res.sendView('messageEdit', {
@@ -202,13 +203,16 @@ class MessageController {
 
     * doEdit (req, res) {
         const newData = req.all()
+        const id = req.param('id')
         const message = yield Message.find(id)
 
         message.status = newData.status
-        message.text = message.text + "\n\n Frissítés: \n" + newData.text
+        if(message.text.length > 1){
+            message.text = message.text + "\n\n Frissítés: \n" + newData.text
+        }
         yield message.save()
 
-        res.redirect('/message/${message.id}')
+        res.redirect(`/message/${message.id}`)
     }
 
 }

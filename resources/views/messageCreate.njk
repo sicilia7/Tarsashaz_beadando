@@ -17,7 +17,7 @@
 {% endif %}
 
 <form class="form-horizontal" action="/message/create" method="POST">
-
+  {{ csrfField }}
   <div class="form-group">
     <label for="inputTitle" class="col-sm-2 control-label">Cím</label>
     <div class="col-sm-9">
