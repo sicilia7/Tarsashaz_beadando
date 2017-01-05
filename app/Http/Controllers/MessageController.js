@@ -104,7 +104,7 @@ class MessageController {
             return
         }
 
-        yield res.sendView('/statementCreate')
+        yield res.sendView('statementCreate')
     }
 
     * doCreateStatement (req, res) {
@@ -206,8 +206,12 @@ class MessageController {
         const id = req.param('id')
         const message = yield Message.find(id)
 
-        message.status = newData.status
-        if(message.text.length > 1){
+        if(newData.status == 'on'){
+            message.status = 1
+        }else{
+            message.status = 0
+        }
+        if(newData.text.length > 1){
             message.text = message.text + "\n\n Frissítés: \n" + newData.text
         }
         yield message.save()

@@ -43,15 +43,18 @@ class UserController {
         yield user.save()
         yield req.auth.login(user)
 
-        res.redirect('/')
+        res.redirect('./')
     }
 
     * edit(req, res){
-        const user = User.find(req.currentUser.id)
+        const isLoggedIn = yield req.auth.check()
 
-        yield res.sendView('profile', {
-            user: user.toJSON()
-        })
+        if(!isLoggedIn){
+            res.redirect('../')
+            return
+        }
+
+        yield res.sendView('profile')
     }
 
     * doEdit(req, res){
@@ -66,7 +69,7 @@ class UserController {
         if (validation.fails()) {
             yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
 
-            res.redirect('/editProfile')
+            res.redirect('./editProfile')
             return
         }
 
@@ -81,13 +84,13 @@ class UserController {
             validation = Validator.validateAll(userData, rules)
             if(validation.fails()){
                 yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
-                res.redirect('/editProfile')
+                res.redirect('./editProfile')
                 return
             }
             user.password = yield Hash.make(userData.password)
         }
         yield user.save()
-        res.redirect('/editProfile')
+        res.redirect('./editProfile')
 
     }
 
