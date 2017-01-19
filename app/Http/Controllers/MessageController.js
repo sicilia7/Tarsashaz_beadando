@@ -3,6 +3,7 @@
 const Statement = use('App/Model/Statement')
 const Message = use('App/Model/Message')
 const Comment = use('App/Model/Comment')
+const User = use('App/Model/User')
 const Validator = use('Validator')
 
 class MessageController {
@@ -10,10 +11,28 @@ class MessageController {
     * main (req, res) {
         const messages = yield Message.all()
         const statements = yield Statement.all()
+        const allUsers = yield User.all()
+        var users = []
+        var activeStatements = []
+        var oldStatements = []
+        var date = new Date()
+        statements.forEach(function(statement){
+            if(new Date(statement.deadline) > date){
+                activeStatements.push(statement)
+            }else{
+                oldStatements.push(statement)
+            }
+        }, this)
+
+        for(let user of allUsers){
+            users[user.id] = user.name
+        }
 
         yield res.sendView('main', {
             messages: messages.toJSON(),
-            statements: statements.toJSON()
+            activeStatements: activeStatements,
+            oldStatements: oldStatements,
+            users: users
         })
     }
 
@@ -21,32 +40,56 @@ class MessageController {
         const filter = yield Message.find(req.param('filter'))
         const AllMessages = yield Message.all()
         const AllStatements = yield Statement.all()
+        const AllComments = yield Comment.all()
+        const AllUsers = yield User.all()
+        const data = req.all()
+        var users = []
+        for(let user of AllUsers){
+            users[user.id] = user.name
+        }
 
-        if(filter == "own"){
+        if(data.filter == "own"){
             const messages = []
-            allmessages.forEach(function(element) {
-                if(element.user_id == currentUser.id){
+            AllMessages.forEach(function(element) {
+                if(element.user_id == req.currentUser.id){
                     messages.push(element)
                 }
             }, this);
             yield res.sendView('main', {
-            messages: messages.toJSON()
+            messages: messages,
+            users: users
             })
-        }else if(filter == "statements"){
+        }else if(data.filter == "statement"){
+            var activeStatements = []
+            var oldStatements = []
+            var date = new Date()
+            AllStatements.forEach(function(statement){
+                if(new Date(statement.deadline) > date){
+                    activeStatements.push(statement)
+                }else{
+                    oldStatements.push(statement)
+                }
+            }, this)
             yield res.sendView('main', {
-            statements: AllStatements.toJSON()
+            activeStatements: activeStatements,
+            oldStatements: oldStatements,
+            users: users
             })
-        }else if(filter == "commented"){
+        }else if(data.filter == "commented"){
             const messages = []
-            allmessages.forEach(function(message) {
-                message.comments.forEach(function(element) {
-                    if(element.user_id == currentUser.id){
-                        messages.push(message)
+            AllMessages.forEach(function(message) {
+                AllComments.forEach(function(element) {
+                    if(element.user_id == req.currentUser.id 
+                    && element.msg_id == message.id){
+                        if(messages.indexOf(message) < 0){
+                            messages.push(message)
+                        }
                     }
                 }, this);
             }, this);
             yield res.sendView('main', {
-            messages: messages.toJSON()
+            messages: messages,
+            users: users
             })
         }else{
             res.redirect('/messages')
@@ -113,7 +156,7 @@ class MessageController {
         const rules = {
             'title': 'required',
             'text': 'required',
-            'inputDate': 'required'//Timestamp?
+            'inputDate': 'required'
         }
 
         const validation = yield Validator.validateAll(statementData, rules)
@@ -144,13 +187,22 @@ class MessageController {
 
     * show (req, res) {
         const message = yield Message.find(req.param('id'))
-        var comments = yield message.comments()
+        var comments = []
+        var users = []
+        const AllComment = yield Comment.all()
+        for(let comment of AllComment){
+            const uid = comment.user_id
+            if(comment.msg_id == message.id){
+                const usr = yield User.find(uid);
+                users[uid] = usr.name
+                comments.push(comment)
+            }
+        }
         yield message.related('user').load()
-
-        console.log(Object.prototype.toString.call( comments ))
 
         yield res.sendView('message', {
             message: message.toJSON(),
+            users: users,
             comments: comments
         })
     }

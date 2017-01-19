@@ -10,19 +10,16 @@
 </div>
 {% endif %}
 
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Szűrés
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="../messages/">Minden bejegyzés</a></li>
-    <li><a href="../messages/own">Saját bejegyzések</a></li>
-    <li><a href="../messages/commented">Kommentált bejegyzések</a></li>
-    <li><a href="../messages/statement">Közlemények</a></li>
-  </ul>
-</div>
-
+<form class="form-horizontal" action="/messages/filter" method="POST">
+{{ csrfField }}
+<select id="filter" name="filter">
+  <option value="">Minden bejegyzés</option>
+  <option value="own">Saját bejegyzések</option>
+  <option value="commented">Kommentált bejegyzések</option>
+  <option value="statement">Közlemények</option>
+</select>
+ <button type="submit" class="btn">Szűrés</button>
+</form>
 <table class="table">
   <thead>
     <tr>
@@ -32,10 +29,10 @@
     </tr>
   </thead>
    <tbody>
-    {% for statement in statements %}
+    {% for statement in activeStatements %}
         <tr>
           <td>{{statement.deadline}}</td>
-          <td>{{statement.user_id}}</td>
+          <td>{{users[statement.user_id]}}</td>
           <td><a href="../statement/{{ statement.id }}">{{statement.title}}</a></td>
           </tr>
   {% endfor %}
@@ -43,7 +40,7 @@
     {% if message.status == true %}
         <tr>
           <td>"Aktív"</td>
-          <td>{{ message.user_id }}</td>
+          <td>{{ users[message.user_id] }}</td>
           <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
           </tr>
       {% endif %}
@@ -52,10 +49,17 @@
   {% if message.status == false %}
         <tr>
           <td>"Megoldott"</td>
-          <td>{{ message.user_id }}</td>
+          <td>{{ users[message.user_id] }}</td>
           <td><a href="../message/{{ message.id }}">{{message.title}}</a></td>
           </tr>
       {% endif %}
+  {% endfor %}
+    {% for statement in oldStatements %}
+        <tr>
+          <td>{{statement.deadline}}</td>
+          <td>{{users[statement.user_id]}}</td>
+          <td><a href="../statement/{{ statement.id }}">{{statement.title}}</a></td>
+          </tr>
   {% endfor %}
   </tbody>
 </table>

@@ -7,7 +7,9 @@
     <div class="media">
     <div class="media-right">
         <a href="#">
-        <img class="media-object" src="..." alt="...">
+            {% if statement.picture != "nopicture.jpg" %}
+        <img class="media-object" src={{ statement.picture }} alt="...">
+        {% endif %}
         </a>
     </div>
     <div class="media-body">

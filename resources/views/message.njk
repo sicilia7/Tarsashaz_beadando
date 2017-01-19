@@ -7,7 +7,9 @@
     <div class="media">
     <div class="media-right">
         <a href="#">
+            {% if message.picture != "nopicture.jpg" %}
         <img class="media-object" src= {{ message.picture }} alt="...">
+        {% endif %}
         </a>
     </div>
     <div class="media-body">
@@ -28,15 +30,13 @@
 </div>
 <h3>Hozzászólások:</h3>
 {% for comment in comments %}
-{% if comment.msg_id == message.id %}
 <div class="datasheet">
     <div class="well well-lg">
     <div class="media">
-    <p>{{ comment.user }} , {{ comment.created_at }}</p>
+    <p>{{ users[comment.user_id] }}, {{ comment.created_at }}</p>
     <p>{{ comment.text }}</p>
     </div></div>
 </div>
-{% endif %}
 {% endfor %}
 <form action="/message/{{ message.id }}/comment" method="POST">
     {{ csrfField }}

@@ -54,7 +54,12 @@ class UserController {
             return
         }
 
-        yield res.sendView('profile')
+        const id = req.currentUser.id;
+        const user = yield User.find(id);
+
+        yield res.sendView('profile', {
+            user: user.toJSON()
+        })
     }
 
     * doEdit(req, res){
@@ -73,17 +78,17 @@ class UserController {
             return
         }
 
-        const user = User.find(req.currentUser.id)
+        const user = yield User.find(req.currentUser.id)
         user.name = userData.name
         user.email = userData.email
         if(userData.password !== ""){
-            rules = {
+            const passwordRules = {
                 'password': 'required|min:6',
                 'password_again': 'same:password'
             }
-            validation = Validator.validateAll(userData, rules)
-            if(validation.fails()){
-                yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
+            const passwordValidation = yield Validator.validateAll(userData, passwordRules)
+            if(passwordValidation.fails()){
+                yield req.withOut('password', 'password_again').andWith({ errors: passwordValidation.messages() }).flash()
                 res.redirect('./editProfile')
                 return
             }

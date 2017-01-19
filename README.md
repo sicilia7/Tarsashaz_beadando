@@ -4,6 +4,10 @@
 
 Társasházi feladatkezelő rendszer, ami a társasházi lakóközösségben felmerülő feladatok/kérdések/problémák megvitatását és megoldását segíti. A felhasználók mindegyike hozhat létre új bejegyzést, illetve a bejegyzésekhez megjegyzés(eke)t fűzhet. A közös képviselő (admin) ezen felül az egyes bejegyzések állapotát is állíthatja, illetve a többi bejegyzéshez képest prioritást élvező közleményeket is közzé tehet a felületen. 
 
+Adatok az admin felhasználóval történő belépéshez:
+ * email: admin@admin.hu
+ * jelszó: admin123
+
 ## Funkcionális követelmények
 
 <ul><li>Felhasználóként szeretnék tudni bejelentkezni az oldalra </li>
@@ -25,6 +29,29 @@ Továbbá
 <li>Felhasználóbarát, használhatóságot segítő elrendezés és kinézet</li>
 <li>Gyors működés</li>
 <li>Biztonságos működés – mindenki a jogosultságának megfelelő adatokhoz férhessen csak hozzá</li>
+</ul>
+
+## Végpontok
+
+<ul>
+<li>GET/: főoldal</li>
+<li>POST/login: bejelentkező adatok felküldése</li>
+<li>GET/logout: kijelentkező oldal</li>
+<li>GET/register: regisztrációs oldal</li>
+<li>POST/register: regisztrációs adatok felküldése</li>
+<li>GET/messages: bejegyzéslista oldala</li>
+<li>POST/messages/filter: bejegyzéslista szűréséhez adatok felküldése</li>
+<li>GET//message/create: új bejegyzés felvitele</li>
+<li>POST//message/create: új bejegyzés felviteléhez szükséges adatok felküldése</li>
+<li>GET//statement/create: új közlemény felvitele</li>
+<li>POST//statement/create: új közlemény felviteléhez szükséges adatok felküldése</li>
+<li>GET/message/id: bejegyzés oldala</li>
+<li>GET/statement/id: közlemény oldala</li>
+<li>GET/message/id/edit: bejegyzés szerkesztése oldal</li>
+<li>POST/message/id/edit: bejegyzés szerkesztéséhez szükséges adatok felküldése</li>
+<li>POST/message/id/comment: bejegyzés kommentálásához szükséges adatok felküldése</li>
+<li>GET/editProfile: profil oldal</li>
+<li>POST/editProfile: profil szerkesztéséhez szükséges adatok felküldése</li>
 </ul>
 
 ## Szerepkörök
