@@ -114,3 +114,14 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 ## Adatmodell
 
 ![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/modell.png)
+
+# 3. beadandó
+
+## A változásokban érintett fájlok:
+ * UserController
+ * MessageController
+ * 
+
+## Funkciók
+
+## Tesztek
