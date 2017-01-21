@@ -111,6 +111,34 @@ class UserController {
         res.redirect('/')
     }
 
+    * ajaxReg (req, res) {
+        const userData = req.all()
+        const rules = {
+            'email': 'required|email',
+            'name': 'required',
+            'password': 'required|min:6',
+            'password_again': 'required|same:password'
+        }
+
+        const validation = yield Validator.validateAll(userData, rules)
+
+        if (validation.fails()) {
+            //yield req.withOut('password', 'password_again').andWith({ errors: validation.messages() }).flash()
+            res.ok({ success: false, errors: validation.messages() })
+            return
+        }
+
+        const user = new User
+        user.name = userData.name
+        user.email = userData.email
+        user.password = yield Hash.make(userData.password)
+
+        yield user.save()
+        //yield req.auth.login(user)
+
+        res.ok({ success: true })
+    }
+
     * doLogout (req, res) {
         yield req.auth.logout()
         res.redirect('/')

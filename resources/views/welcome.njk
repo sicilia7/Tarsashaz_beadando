@@ -45,7 +45,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   {% if not currentUser %}
-                  <li><a href="/register">Regisztráció</a></li>
+                  <li><a href="/register" id="regBtn">Regisztráció</a></li>
                   {% endif %}
                 </ul>
               </nav>
@@ -119,5 +119,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/scripts/ajaxReg.js"></script>
+     {% block scripts %}{% endblock %}
   </body>
 </html>

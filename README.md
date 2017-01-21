@@ -120,8 +120,13 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 ## A változásokban érintett fájlok:
  * UserController
  * MessageController
+ * routes.js
  * 
 
 ## Funkciók
+
+* AJAX regisztráció (ajaxReg.js)
+  * A nyitólapon a regisztráció gombra kattintva felugró ablakban adhatjuk emg a szükséges adatokat. 
+  Hibás adatok esetén itt kapunk hibaüzenetet is, ha nincs hiba, megtörténik a regisztráció.
 
 ## Tesztek

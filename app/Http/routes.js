@@ -24,3 +24,7 @@ Route.post('/editProfile', 'UserController.doEdit')//auth
 
 Route.post('/login', 'UserController.doLogin')
 Route.get('/logout', 'UserController.doLogout')
+
+Route.group('ajax', function () {
+    Route.post('/register', 'UserController.ajaxReg')
+}).prefix('/ajax')
