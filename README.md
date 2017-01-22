@@ -121,6 +121,12 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
  * UserController
  * MessageController
  * routes.js
+ * master.njk
+ Új fájlok:
+ * ajaxReg.js
+ * ajaxComment.js
+ * ajaxCreate.js
+ * imagePreview.js
  * 
 
 ## Funkciók
@@ -133,8 +139,8 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 * Kép előnézet (imagePreview.js)
   * Új bejegyzés/közlemény beküldésénél, ha a felhasználó megad képhez tartozó URL-t, megjelenik a kép előnézeti képe, vagy egy hibaüzenet, ha a beírt címen 
   nem talál (megjeleníthető) képet a rendszer.
-* Űrlapvalidáció profil szerkesztésénél
-  * ...
 * AJAX-os új bejegyzés (ajaxCreate.js)
   * Új bejegyzés küldésénél előbb megerősítést kér a rendszer, majd, ha a felhasználó a beküldés mellett dönt, megtörténik a bejegyzés beküldése.
+* Kijelentkezés megerősítése
+  * A kijelentkezés gombra kattintva felugró ablak jelenik meg, kérve a kijelentkezés megerősítését.
 ## Tesztek

@@ -127,12 +127,7 @@ class MessageController {
         message.title = messageData.title
         message.text = messageData.text
         message.user_id = req.currentUser.id 
-        if( messageData.picture == "" ) 
-        {
-            message.picture = "nopicture.jpg"
-        }else{
-            message.picture = messageData.inputPicture
-        }
+        message.picture = messageData.inputPicture
 
         yield message.save()
 
@@ -172,12 +167,7 @@ class MessageController {
         statement.text = statementData.text
         statement.deadline = statementData.inputDate
         statement.user_id = 1 
-        if( statementData.picture == "" ) 
-        {
-            statement.picture = "nopicture.jpg"
-        }else{
-            statement.picture = statementData.inputPicture
-        }
+        statement.picture = statementData.inputPicture
 
         yield statement.save()
 
@@ -266,6 +256,30 @@ class MessageController {
             res.ok({ success: false, error: "Üres komment nem küldhető!" })
             return
         }
+    }
+
+    * ajaxCreate(req,res){
+        const messageData = req.all()
+
+        const rules = {
+            'title': 'required',
+            'text': 'required',
+        }
+
+        const validation = yield Validator.validateAll(messageData, rules)
+        if(validation.fails()){
+            res.ok({ success: false, errors: validation.messages() })
+            return
+        }
+
+        const message = new Message()
+        message.title = messageData.title
+        message.text = messageData.text
+        message.user_id = req.currentUser.id 
+        message.picture = messageData.picture
+
+        yield message.save()
+        res.ok({success: true, msg_id: message.id});
     }
 
     * edit (req, res) {

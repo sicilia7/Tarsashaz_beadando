@@ -134,7 +134,7 @@ class UserController {
         user.password = yield Hash.make(userData.password)
 
         yield user.save()
-        //yield req.auth.login(user)
+        yield req.auth.login(user)
 
         res.ok({ success: true })
     }
@@ -143,16 +143,6 @@ class UserController {
         yield req.auth.logout()
         res.redirect('/')
     }
-
-   /* * ajaxLogout(req, res){
-        yield req.auth.logout()
-        
-        try{
-            res.ok({success:true})
-        }catch(ex){
-            res.ok({success:false})
-        }
-} */
 }
 
 module.exports = UserController

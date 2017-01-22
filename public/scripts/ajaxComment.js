@@ -17,6 +17,7 @@ $commentForm.on('submit', function (e){
             headers
         }).done(function(json){
             var html = "";
+            $('.alert').hide()
             if (json.success) {
                     html += `<div class="datasheet">
                                 <div class="well well-lg">
@@ -25,7 +26,6 @@ $commentForm.on('submit', function (e){
                                     <p>`+json.text+`</p>
                                 </div></div>
                             </div>`;
-                    $('.alert').hide()
                     $('.newComment').append(html)
                 } else {
                     var div = document.createElement('div');
