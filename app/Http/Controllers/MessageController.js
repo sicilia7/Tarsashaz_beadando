@@ -241,6 +241,33 @@ class MessageController {
 
     }
 
+    * ajaxComment(req, res){
+        const text = req.input('text')
+        console.log(text)
+        const id = req.param('id')
+        console.log(id)
+        const rules = {
+            'text': 'required'
+        }
+
+        if(/\S/.test(text)){
+
+        const comment = new Comment()
+        comment.text = text
+        comment.user_id = req.currentUser.id
+        comment.msg_id = id
+
+        yield comment.save()
+
+        const usr = yield User.find(comment.user_id);
+        res.ok({success: true, createdAt: comment.created_at, text: comment.text, username: usr.name});
+
+        }else{
+            res.ok({ success: false, error: "Üres komment nem küldhető!" })
+            return
+        }
+    }
+
     * edit (req, res) {
         const id = req.param('id')
         const message = yield Message.find(id)

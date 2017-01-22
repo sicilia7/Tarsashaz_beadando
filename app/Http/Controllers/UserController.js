@@ -143,6 +143,16 @@ class UserController {
         yield req.auth.logout()
         res.redirect('/')
     }
+
+   /* * ajaxLogout(req, res){
+        yield req.auth.logout()
+        
+        try{
+            res.ok({success:true})
+        }catch(ex){
+            res.ok({success:false})
+        }
+} */
 }
 
 module.exports = UserController

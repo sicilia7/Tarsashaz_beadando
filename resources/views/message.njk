@@ -38,7 +38,8 @@
     </div></div>
 </div>
 {% endfor %}
-<form action="/message/{{ message.id }}/comment" method="POST">
+<div class="newComment"></div>
+<form action="/message/{{ message.id }}/comment" method="POST" id="commentForm">
     {{ csrfField }}
     <div class="form-group">
     <label for="comment" class="col-sm-2 control-label">Hozzászólás:</label>
@@ -48,7 +49,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-12">
-      <button type="submit" class="btn btn-success">Hozzászólás küldése</button>
+      <button type="submit" class="btn btn-success" id="commentBtn">Hozzászólás küldése</button>
     </div>
   </div>   
 </form>
