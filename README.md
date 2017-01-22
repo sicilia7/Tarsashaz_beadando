@@ -126,7 +126,12 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 ## Funkciók
 
 * AJAX regisztráció (ajaxReg.js)
-  * A nyitólapon a regisztráció gombra kattintva felugró ablakban adhatjuk emg a szükséges adatokat. 
+  * A nyitólapon a regisztráció gombra kattintva felugró ablakban adhatjuk meg a szükséges adatokat. 
   Hibás adatok esetén itt kapunk hibaüzenetet is, ha nincs hiba, megtörténik a regisztráció.
-
+* Megerősítés kérése kijelentkezésnél
+  * A kijelentkezés gombra kattintva felugró ablak jelenik meg, a kilépés megerősítését kérve.
+* Kép előnézet
+  * Új bejegyzés/közlemény beküldésénél, ha a felhasználó megad képhez tartozó URL-t, megjelenik a kép előnézeti képe, vagy egy hibaüzenet, ha a beírt címen 
+  nem talál (megjeleníthető) képet a rendszer.
+* 
 ## Tesztek

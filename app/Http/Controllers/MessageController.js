@@ -131,7 +131,7 @@ class MessageController {
         {
             message.picture = "nopicture.jpg"
         }else{
-            message.picture = messageData.picture
+            message.picture = messageData.inputPicture
         }
 
         yield message.save()
@@ -176,7 +176,7 @@ class MessageController {
         {
             statement.picture = "nopicture.jpg"
         }else{
-            statement.picture = statementData.picture
+            statement.picture = statementData.inputPicture
         }
 
         yield statement.save()
