@@ -123,6 +123,7 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
  * routes.js
  * master.njk
  * welcome.njk
+ 
 Új fájlok:
  * ajaxReg.js
  * ajaxComment.js
