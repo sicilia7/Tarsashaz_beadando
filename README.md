@@ -122,12 +122,13 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
  * MessageController
  * routes.js
  * master.njk
- Új fájlok:
+ * welcome.njk
+Új fájlok:
  * ajaxReg.js
  * ajaxComment.js
  * ajaxCreate.js
  * imagePreview.js
- * 
+ * logout.js
 
 ## Funkciók
 
@@ -136,11 +137,12 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
   Hibás adatok esetén itt kapunk hibaüzenetet is, ha nincs hiba, megtörténik a regisztráció.
 * AJAX-os kommentelés (ajaxComment.js)
   * Hozzászólás küldése ajaxos megoldással
+* AJAX-os új bejegyzés (ajaxCreate.js)
+  * Új bejegyzés küldésénél előbb megerősítést kér a rendszer, majd, ha a felhasználó a beküldés mellett dönt, ajaxos megoldással megtörténik a bejegyzés beküldése.
 * Kép előnézet (imagePreview.js)
   * Új bejegyzés/közlemény beküldésénél, ha a felhasználó megad képhez tartozó URL-t, megjelenik a kép előnézeti képe, vagy egy hibaüzenet, ha a beírt címen 
   nem talál (megjeleníthető) képet a rendszer.
-* AJAX-os új bejegyzés (ajaxCreate.js)
-  * Új bejegyzés küldésénél előbb megerősítést kér a rendszer, majd, ha a felhasználó a beküldés mellett dönt, megtörténik a bejegyzés beküldése.
-* Kijelentkezés megerősítése
+* Kijelentkezés megerősítése (logout.js)
   * A kijelentkezés gombra kattintva felugró ablak jelenik meg, kérve a kijelentkezés megerősítését.
+
 ## Tesztek
