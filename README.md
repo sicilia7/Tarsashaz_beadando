@@ -147,3 +147,18 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
   * A kijelentkezés gombra kattintva felugró ablak jelenik meg, kérve a kijelentkezés megerősítését.
 
 ## Tesztek
+
+A tesztek Selenium IDE használatával készültek, valamint azzal futtathatók. A bővítményben a base URL mezőt be kell állítani a megfelelő értékre (alapesetben localhost:3333), majd a tesztet importálni (File/Open Test Suite).
+Ekkor mind az öt teszt egymás után sorban futtatható. A tesztesetek egyesével is importálhatóak és futtathatóak, de az előző módszer használata célszerűbb, mivel egyes tesztek (részben) egymásra is épülnek. 
+Az elkészített tesztek:
+
+* registration
+  * A regisztrációt teszteli. Elsőre hibás adatot ad meg, másodjára megfelelően kitölti az űrlapot, és regisztrálja a felhasználót.
+* editProfile
+  * A felhasználó profil adatainak módosítása (email)
+* createMessage
+  * Új bejegyzés létrehozása
+* commentMessage
+  * Az előbbi bejegyzéshez hozzászólás fűzése, majd szűrés a bejegyzéslistában a felhasználó által kommentált bejegyzésekre.
+* editByAdmin
+  * Kijelentkezés a felhasználóval, majd bejelentkezés adminként. Az előbb létrehozott bejegyzés állapotának módosítása és kiegészítés hozzáfűzése.
