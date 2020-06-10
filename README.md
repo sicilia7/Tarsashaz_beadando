@@ -109,7 +109,7 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 
 ### Bejegyzés oldala
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/Bejegyzés_oldala.jpg)
+![alt tag](readme_pictures/Bejegyzés_oldala.jpg)
 
 ## Adatmodell
 
