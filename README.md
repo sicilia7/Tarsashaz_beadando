@@ -61,11 +61,11 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 
 ## Használati esetek
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/hasznalati.png)
+![alt tag](readme_pictures/hasznalati.png)
 
 ## Folyamatok
 ### Bejelentkezés, új bejegyzés hozzáadása, új megjegyzés írása, státuszállítás:
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/login.png) ![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/new.png) ![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/comment.png) ![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/status.png)
+![alt tag](readme_pictures/login.png) ![alt tag](readme_pictures/new.png) ![alt tag](readme_pictures/comment.png) ![alt tag](readme_pictures/status.png)
 
 ## Oldaltérkép
 
@@ -97,15 +97,15 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 
 ### Főoldal
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/Főoldal.jpg)
+![alt tag](readme_pictures/Főoldal.jpg)
 
 ### Lista oldal
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/Listaoldal.jpg)
+![alt tag](readme_pictures/Listaoldal.jpg)
 
 ### Új bejegyzés
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/Új_bejegyzés.jpg)
+![alt tag](readme_pictures/Új_bejegyzés.jpg)
 
 ### Bejegyzés oldala
 
@@ -113,7 +113,7 @@ Közös képviselő (admin): A felhasználó jogosultságain túl beállíthatja
 
 ## Adatmodell
 
-![alt tag](https://raw.githubusercontent.com/sicilia7/alkfejl_bead/master/modell.png)
+![alt tag](readme_pictures/modell.png)
 
 # 3. beadandó
 
